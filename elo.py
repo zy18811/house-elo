@@ -3,7 +3,7 @@ import pickle
 
 
 def reset_df(starting_elo=1000):
-    elo_df = pd.DataFrame(columns=['Sam','Luca','Amy','Gabriel'])
+    elo_df = pd.DataFrame(columns=['Sam','Luca','Amy','Gabriel'], dtype=pd.Float64Dtype)
     elo_df.loc[0] = starting_elo
     pickle.dump(elo_df, open('elo_df.pkl', 'wb'),protocol=pickle.HIGHEST_PROTOCOL)
 
@@ -30,7 +30,7 @@ def elo_update(player_a, player_b, score_a, score_b):
     r_a += int(k*(score_a-E_a))
     r_b += int(k*(score_b-E_b))
 
-    elo_df = elo_df.append(pd.Series(dtype=int), ignore_index=True)
+    elo_df = elo_df.append(pd.Series(dtype=pd.Float64Dtype), ignore_index=True)
 
     for player in elo_df.columns:
         if player == player_a:
@@ -38,7 +38,12 @@ def elo_update(player_a, player_b, score_a, score_b):
         elif player == player_b:
             elo_df[player].iloc[-1] = r_b
         else:
-            elo_df[player].iloc[-1] = elo_df[player].iloc[-2]
+            elo_df[player].iloc[-1] = elo_df[player].values[-2]
+
     pickle.dump(elo_df, open('elo_df.pkl', 'wb'), protocol=pickle.HIGHEST_PROTOCOL)
 
-reset_df()
+
+def print_elos():
+    elo_df = pickle.load(open('elo_df.pkl', 'rb'))
+    pd.options.display.float_format = '{:.0f}'.format
+    print(elo_df.iloc[-1].to_string())
