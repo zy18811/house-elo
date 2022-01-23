@@ -1,1 +1,1 @@
-web: voila --port=$PORT --no-browser main.ipynb
+web: voila --port=$PORT --no-browser powerhouse_elo.ipynb
