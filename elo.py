@@ -30,7 +30,7 @@ def elo_update(player_a, player_b, score_a, score_b):
     r_a += int(k*(score_a-E_a))
     r_b += int(k*(score_b-E_b))
 
-    elo_df = elo_df.append(pd.Series(dtype=float), ignore_index=True)
+    elo_df = elo_df.append(pd.Series(dtype=int), ignore_index=True)
 
     for player in elo_df.columns:
         if player == player_a:
