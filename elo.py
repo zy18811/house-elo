@@ -27,8 +27,8 @@ def elo_update(player_a, player_b, score_a, score_b):
     E_a = Q_a/(Q_a+Q_b)
     E_b = Q_b/(Q_a+Q_b)
 
-    r_a += k*(score_a-E_a)
-    r_b += k*(score_b-E_b)
+    r_a += int(k*(score_a-E_a))
+    r_b += int(k*(score_b-E_b))
 
     elo_df = elo_df.append(pd.Series(dtype=float), ignore_index=True)
 
@@ -41,3 +41,4 @@ def elo_update(player_a, player_b, score_a, score_b):
             elo_df[player].iloc[-1] = elo_df[player].iloc[-2]
     pickle.dump(elo_df, open('elo_df.pkl', 'wb'), protocol=pickle.HIGHEST_PROTOCOL)
 
+reset_df()
