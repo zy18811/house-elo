@@ -141,3 +141,4 @@ websocket-client~=1.2.1
 whitebox~=1.5.1
 whiteboxgui~=0.3.0
 widgetsnbextension~=3.5.1
+ipympl~=0.8.7
