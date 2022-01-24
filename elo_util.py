@@ -47,3 +47,7 @@ def print_elos():
     elo_df = pickle.load(open('elo_df.pkl', 'rb'))
     pd.options.display.float_format = '{:.0f}'.format
     print(elo_df.iloc[-1].to_string())
+
+
+if __name__ == '__main__':
+    reset_df()
