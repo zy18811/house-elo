@@ -142,3 +142,5 @@ whitebox~=1.5.1
 whiteboxgui~=0.3.0
 widgetsnbextension~=3.5.1
 ipympl~=0.8.7
+pydrive~=1.3.1
+oauth2client~=4.1.3
